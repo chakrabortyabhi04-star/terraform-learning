@@ -3,7 +3,7 @@ output "vnet_id" {
   description = "Azure Virtual network address"
 }
 
-output "rg.id" {
+output "rg_id" {
   value       = azurerm_resource_group.terraformlearning.id
   description = "Azure resource group name"
 }
