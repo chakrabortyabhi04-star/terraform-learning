@@ -1,6 +1,6 @@
 locals {
 common_tags = {
-environment = "dev"
+environment = var.environment
 project     = "terraform-learning"
 }
 }

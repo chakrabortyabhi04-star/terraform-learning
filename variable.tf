@@ -27,3 +27,9 @@ variable "environment" {
   default     = "dev"
   description = "local enviromment"
 }
+
+variable "ssh_public_key" {
+  type        = string
+  description = "SSH public key for VM access"
+  default     = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC dummy-key-for-learning"
+}
