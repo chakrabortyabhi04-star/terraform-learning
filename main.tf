@@ -14,3 +14,11 @@ resource "azurerm_virtual_network" "vnet" {
   
   
 }
+
+module "module_practice" {
+  source = "./modules/networking"
+
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  environment         = var.environment
+}
