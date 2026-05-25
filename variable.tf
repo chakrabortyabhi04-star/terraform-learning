@@ -33,3 +33,4 @@ variable "ssh_public_key" {
   description = "SSH public key for VM access"
   default     = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC dummy-key-for-learning"
 }
+
