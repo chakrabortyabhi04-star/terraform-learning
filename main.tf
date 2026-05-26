@@ -5,15 +5,7 @@ resource "azurerm_resource_group" "terraformlearning" {
   
 }
 
-resource "azurerm_virtual_network" "vnet" {
-  name                = "vnet-${local.common_prefix}"
-  location            = var.location
-  resource_group_name = azurerm_resource_group.terraformlearning.name
-  address_space       = var.vnet_address_space
-  tags = local.common_tags
-  
-  
-}
+
 
 module "module_practice" {
   source = "./modules/networking"

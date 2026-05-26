@@ -1,5 +1,5 @@
-output "vnet_id" {
-  value       = azurerm_virtual_network.vnet.id
+output "vnet_name" {
+  value       = module.module_practice.vnet_name
   description = "Azure Virtual network address"
 }
 
@@ -11,4 +11,10 @@ output "rg_id" {
 output "module_vnet_name" {
   value = module.module_practice.vnet_name
   description = "Azure resource group name"
+}
+
+
+output "module_vnet_id" {
+  value = module.module_practice.vnet_id
+  description = "Azure module Vnet id "
 }
