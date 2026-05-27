@@ -16,3 +16,10 @@ module "module_practice" {
    address_space      = var.vnet_address_space
 }
 
+module "vnet" {
+  source  = "Azure/vnet/azurerm"
+  version = "5.0.1"
+
+  resource_group_name =var.resource_group_name
+  vnet_location       = var.location
+}
