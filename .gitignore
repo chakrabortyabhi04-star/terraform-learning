@@ -1,4 +1,4 @@
 .terraform/
 terraform.tfstate
 terraform.tfstate.backup
-downloaded-state.json
+downloaded-state.json*.bak
