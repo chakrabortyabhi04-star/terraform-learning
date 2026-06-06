@@ -10,12 +10,25 @@ resource "azurerm_resource_group" "terraformlearning" {
 module "module_practice" {
   source = "./modules/networking"
 
-  location            = var.location
-  resource_group_name = var.resource_group_name
-  environment         = var.environment
-   address_space      = var.vnet_address_space
-}
+  location             = var.location
+  resource_group_name  = var.resource_group_name
+  environment          = var.environment
+  address_space        = var.vnet_address_space
 
+  security_rules = [
+    {
+      name                       = "test123"
+      priority                   = 100
+      direction                  = "Inbound"
+      access                     = "Allow"
+      protocol                   = "Tcp"
+      source_port_range          = "*"
+      destination_port_range     = "*"
+      source_address_prefix      = "*"
+      destination_address_prefix = "*"
+    }
+  ]
+}
 module "vnet" {
   source  = "Azure/vnet/azurerm"
   version = "5.0.1"
