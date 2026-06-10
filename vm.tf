@@ -1,6 +1,7 @@
 
 
 resource "azurerm_public_ip" "Publicip" {
+  count = var.environment == "prod" ? 1 : 0
   name                = "publicip-${local.common_prefix}"
   resource_group_name = azurerm_resource_group.terraformlearning.name
   location            = var.location
@@ -11,6 +12,7 @@ resource "azurerm_public_ip" "Publicip" {
 
 
 resource "azurerm_network_interface" "nic" {
+  count = var.environment == "prod" ? 1 : 0
   name                = "nic-${local.common_prefix}"
   location            = var.location
   resource_group_name = azurerm_resource_group.terraformlearning.name
@@ -19,16 +21,17 @@ resource "azurerm_network_interface" "nic" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.subnet_1.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.Publicip.id
+    public_ip_address_id = azurerm_public_ip.Publicip[count.index].id 
   }
 }
 
 resource "azurerm_linux_virtual_machine" "vm" {
+  count = var.environment == "prod" ? 1 : 0
   name                = "vm-${local.common_prefix}"
   location            = var.location
   resource_group_name = azurerm_resource_group.terraformlearning.name
   size                = "Standard_B1s"
-  network_interface_ids = [azurerm_network_interface.nic.id]
+  network_interface_ids = [azurerm_network_interface.nic[count.index].id]
   admin_username      = "azureuser"
 
   admin_ssh_key {
